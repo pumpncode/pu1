@@ -1,0 +1,5 @@
+unzip update.graffle -d ./out
+
+plutil -convert xml1 data.json -o data.plist
+
+cat data.plist | tr -d "\n\t" | sed -E "s/data>|date>/string>/g" | sed -E "s/float/real/g" | plutil -convert json - -o data.json
